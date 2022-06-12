@@ -1,0 +1,54 @@
+{
+  "name": "ionix.com",
+  "version": "1.0.0",
+  "description": "tech test to work in ionix",
+  "main": "index.js",
+  "scripts": {
+    "server": "nodemon --inspect server.js --port 3245",
+    "staticserver": "node server.js",
+    "client": "cd client && npm run start",
+    "install-all": "concurrently \"npm run server-install\" \"npm run client-install\" ",
+    "dever": "concurrently \"npm run server\" \"npm run client\" ",
+    "dev": "concurrently \"npm run staticserver\" \"npm run client\" "
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "./database/*.js"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "OscarJVD",
+  "license": "PRIVATE - NOT FOR COMMERCIAL USE - ONLY FOR CHECK KNOWLEDGE FOR GET A JOB",
+  "bugs": {
+    "url": "https://github.com/OscarJVD/Be-Social/issues"
+  },
+  "homepage": "https://github.com/OscarJVD/Be-Social#readme",
+  "dependencies": {
+    "bcrypt": "5.0.1",
+    "cloudinary": "^1.30.0",
+    "concurrently": "7.0.0",
+    "cookie-parser": "1.4.5",
+    "cors": "2.8.5",
+    "dotenv": "10.0.0",
+    "express": "4.17.1",
+    "inflection": "1.13.2",
+    "is-phone": "2.0.0",
+    "is-valid-email": "0.0.5",
+    "is-valid-username": "0.0.1",
+    "jsdoc": "^3.6.10",
+    "jsonwebtoken": "8.5.1",
+    "mongodb": "4.4.1",
+    "mongoose": "6.2.9",
+    "mongoose-dynamic-schemas": "1.2.6",
+    "multer": "^1.4.5-lts.1",
+    "nickname-generator": "1.1.1",
+    "password-validator": "5.1.1"
+  },
+  "devDependencies": {
+    "jsdoc-http-plugin": "^0.3.2",
+    "nodemon": "2.0.7"
+  }
+}

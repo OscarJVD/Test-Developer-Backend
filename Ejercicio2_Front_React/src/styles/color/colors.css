@@ -1,0 +1,70 @@
+/* BG */
+
+.bg-green-lime {
+    color: #4bed68;
+}
+
+.bg-nothing {
+    color: #f0f2f5;
+}
+
+.bg-clear-red {
+    background-color: #fe2c55 !important;
+}
+
+.bg-neutro {
+    background-color: #e4e6eb;
+}
+
+
+/* TEXT */
+
+.text-black{
+  color: black;
+}
+
+.text-green-lime {
+    color: #4bed68;
+}
+
+#F0F2F5 .text-stroke-white {
+    -webkit-text-stroke: 0.4px white !important;
+}
+
+.text-clear-red {
+    color: #fe2c55 !important;
+}
+
+.text-yellow {
+    color: yellow !important;
+}
+
+.text-light-yellow {
+    color: rgb(248, 248, 165) !important;
+}
+
+.text-dark-yellow {
+    color: rgb(207, 207, 2) !important;
+}
+
+
+/* ICON */
+
+.fa-outline-yellow {
+    color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: yellow;
+}
+
+.fa-outline-dark-yellow {
+    color: transparent;
+    -webkit-text-stroke-width: 2.1px;
+    -webkit-text-stroke-color: #ecc159;
+}
+
+
+/* .fa.custom-fa {
+    font-size: 12em;
+    -webkit-text-stroke-color: blue;
+    color: transparent;
+} */

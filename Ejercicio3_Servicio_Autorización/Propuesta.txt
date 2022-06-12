@@ -1,0 +1,12 @@
+Usar un proveedor - servidor de identidad que permita conexiones OIDC (OpenId Connect) o SAML.
+
+Siendo mas sencillo usar OIDC accediendo mediante llaves de cliente y secreto desde la aplicación SP (Proveedor de servicios) hacia el IDP (Proveedor de identidad).
+
+Al efectuarse la verificación de las llaves devuelve la vista de inicio de sesión desde el IDP que permite ingresar las respectivas credenciales para iniciar en la aplicación y poder acceder a la información
+
+Se puede usar por ejemplo Identitiy server WSO2
+
+Otra alternativa es que se puede llevar a un enfoque mas personalizado montando el proveedor de identidad con librerías cómo oidc-provider usando NodeJs y montando el servidor con ayuda de un conjunto de microservicios cómo
+lambda, api gateway y usando un montaje por archivo YAML mediante AWS SAM.
+
+Otras alternativas es el uso de jsonwebtoken o librerías cómo crypto para encriptar las llaves de acceso o la información en si.

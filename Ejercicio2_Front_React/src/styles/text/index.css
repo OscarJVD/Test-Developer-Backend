@@ -1,0 +1,35 @@
+.text-inherit {
+    text-transform: inherit !important;
+}
+
+.text-initial {
+    text-transform: initial !important;
+}
+
+.hover-text-white:hover {
+    color: white !important;
+}
+
+.fs-7 {
+    font-size: 0.97rem !important;
+}
+
+.fw-semi-bold {
+    font-weight: 450 !important;
+}
+
+.fw-less-bold {
+    font-weight: 550 !important;
+}
+
+.hyphens-auto {
+    hyphens: auto !important;
+}
+
+.break-word {
+    word-break: break-word !important;
+}
+
+.wrap-word {
+    word-wrap: break-word !important;
+}

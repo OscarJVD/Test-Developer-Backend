@@ -1,0 +1,34 @@
+.bg-shadow:hover {
+    background-color: #e2e2e2 !important;
+}
+
+.bg-shadow {
+    background-color: #f0f2f5 !important;
+}
+
+.bg-shadow-icon {
+    bottom: 2rem;
+    left: 1.05rem;
+}
+
+.bg-pill-shadow:hover {
+    background-color: #f0f2f5 !important;
+}
+
+
+/* @media only screen and (min-device-width: 0px) and (max-device-width: 991px) {
+    .bg-shadow-icon {
+        top: 10rem !important;
+        right: 12.7rem !important;
+    }
+} */
+
+@media only screen and (min-device-width: 0px) and (max-device-width: 992px)
+/* and (orientation: landscape) */
+
+{
+    .bg-shadow-icon {
+        bottom: 2.1rem;
+        left: 1.8rem;
+    }
+}

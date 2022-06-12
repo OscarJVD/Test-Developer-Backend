@@ -1,0 +1,221 @@
+Running on port http://localhost:3245
+Mongoose default connection open to mongodb+srv://ionix:Ionixdompro@cluster0.55lfa.mongodb.net/?retryWrites=true&w=majority
+Mongoose default connection is open
+Connected to mongodb.
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+{
+  user: new ObjectId("62a55b5b56e3d0e29ae9adc5"),
+  firstname: 'Samson',
+  lastname: 'Baxter',
+  username: 'sasifytid',
+  email: 'zibylytam@mailinator.com',
+  avatar: 'Quidem deserunt volu',
+  mobile: 'Perspiciatis nisi h',
+  password: '$2b$12$1vOqz3mrHLrKSWv8d29TYO8Ez1skSGhCe356p26QHI5QPSMBjxZuq'
+}
+Collection user exists
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+{
+  '0': {
+    inputAndModelName: 'firstname',
+    type: 'text',
+    inputType: 'text',
+    title: 'Tu primer nombre',
+    required: true,
+    regex: '^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$',
+    unique: false,
+    value: 'Oscar'
+  },
+  '1': {
+    inputAndModelName: 'lastname',
+    type: 'text',
+    inputType: 'text',
+    title: 'segundo nombre',
+    required: true,
+    unique: false,
+    value: 'Vargas'
+  },
+  '2': {
+    inputAndModelName: 'username',
+    type: 'text',
+    inputType: 'text',
+    title: 'usuario',
+    required: true,
+    unique: false,
+    value: 'o'
+  },
+  '3': {
+    inputAndModelName: 'email',
+    type: 'text',
+    inputType: 'text',
+    title: 'correo',
+    required: true,
+    unique: false,
+    value: 'adventurejavis@gmail.com'
+  },
+  '4': {
+    inputAndModelName: 'avatar',
+    type: 'text',
+    inputType: 'text',
+    title: 'avatar',
+    required: true,
+    unique: false,
+    value: 'asdasdasd'
+  },
+  '5': {
+    inputAndModelName: 'mobile',
+    type: 'text',
+    inputType: 'text',
+    title: 'teléfono',
+    required: true,
+    unique: false,
+    value: '3133043714'
+  },
+  '6': {
+    inputAndModelName: 'password',
+    type: 'text',
+    inputType: 'password',
+    title: 'contraseña',
+    required: true,
+    unique: false,
+    tableShow: false,
+    value: 'holamundo'
+  },
+  avatar: 'asdasdasd',
+  email: 'adventurejavis@gmail.com',
+  firstname: 'Oscar',
+  lastname: 'Vargas',
+  mobile: '3133043714',
+  password: 'holamundo',
+  username: 'o'
+}
+{
+  avatar: 'asdasdasd',
+  email: 'adventurejavis@gmail.com',
+  firstname: 'Oscar',
+  lastname: 'Vargas',
+  mobile: '3133043714',
+  password: '$2b$12$WE5ZedoFbQa1prGlIspOvehDEZehfKEGHL.5rX9GJNi9PR/NlNn2K',
+  username: 'o'
+}
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+ITEM
+{
+  __v: 0,
+  _id: '62a563165441a420858253ed',
+  avatar: 'Quidem deserunt volu',
+  createdAt: '2022-06-12T03:52:54.899Z',
+  email: 'zibylytam@mailinator.com',
+  firstname: 'Samson',
+  lastname: 'Baxter',
+  mobile: 'Perspiciatis nisi h',
+  password: '$2b$12$1vOqz3mrHLrKSWv8d29TYO8Ez1skSGhCe356p26QHI5QPSMBjxZuq',
+  updatedAt: '2022-06-12T03:52:54.899Z',
+  user: '62a55b5b56e3d0e29ae9adc5',
+  username: 'sasifytid',
+  tableData: { id: 1 }
+}
+END ITEM
+Collection user doesnt exists
+schemaDinamicObject
+{}
+Collection user exists
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+{
+  user: new ObjectId("62a55b5b56e3d0e29ae9adc5"),
+  firstname: 'Alfonso',
+  lastname: 'Mccarthy',
+  username: 'mycyzymoxa',
+  email: 'lebezocuh@mailinator.com',
+  avatar: 'Dolor et sit dolorem',
+  mobile: 'Nihil rerum fugiat a',
+  password: '$2b$12$RDcE9reAZkNg08ZgEuU/VONDSPz4WeeniMP11Vw.O23VqthlRa5Lm'
+}
+Collection user exists
+El archivo EXISTE! ../models/userModel
+ITEM
+{
+  __v: 0,
+  _id: '62a566b75441a4208582543a',
+  avatar: 'Dolor et sit dolorem',
+  createdAt: '2022-06-12T04:08:23.058Z',
+  email: 'lebezocuh@mailinator.com',
+  firstname: 'Alfonso',
+  lastname: 'Mccarthy',
+  mobile: 'Nihil rerum fugiat a',
+  password: '$2b$12$RDcE9reAZkNg08ZgEuU/VONDSPz4WeeniMP11Vw.O23VqthlRa5Lm',
+  updatedAt: '2022-06-12T04:08:23.058Z',
+  user: '62a55b5b56e3d0e29ae9adc5',
+  username: 'mycyzymoxa',
+  tableData: { id: 1 }
+}
+END ITEM
+Collection user doesnt exists
+schemaDinamicObject
+{}
+Collection user exists
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel

@@ -1,0 +1,103 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap");
+* {
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@media(max-width: 767px){
+  .sm-mb-field{
+    margin-bottom: 1rem !important;
+  }
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+#theme {
+    display: none;
+}
+
+#theme:checked~.App {
+    filter: invert(1);
+    -webkit-filter: invert(1);
+}
+
+.App {
+    width: 100%;
+    min-height: 100vh;
+    background-color: white;
+}
+
+.main {
+    max-width: 1000px;
+    width: 100%;
+    margin: auto;
+}
+
+.pointer {
+    cursor: pointer !important;
+}
+
+.container-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+
+/*  ---------- AUTH ---------- */
+
+@import url("./auth.css");
+
+/*  --------- LOADER ---------- */
+
+@import url("./loading.css");
+
+/* ---------- FORMS ----------  */
+
+@import url("./forms.css");
+
+/* ---------- TEXT  ----------  */
+
+@import url("./text.css");
+
+/* ---------- COLORS  ----------  */
+
+@import url("./color/colors.css");
+
+/* ---------- NAV  ----------  */
+
+@import url("./base/nav.css");
+
+/* ---------- LOADERS  ----------  */
+
+@import url("./loaders/index.css");
+
+/* ---------- PROFILE  ----------  */
+
+@import url("./pages/profile");
+
+/* ---------- TEXT  ----------  */
+
+@import url("./text/index");
+
+/* ---------- BORDER  ----------  */
+
+@import url("./border/index");
+
+/* ---------- DISPLAY  ----------  */
+
+@import url("./display/index");
+
+/* ---------- BUTTON  ----------  */
+
+@import url("./button/index.css");
+
+/* ----------- INPUT ----------- */
+@import url("./input/index.css");

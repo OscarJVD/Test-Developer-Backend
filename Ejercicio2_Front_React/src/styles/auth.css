@@ -1,0 +1,172 @@
+/*******************************************
+************ Authentication Page************
+*******************************************/
+
+.ht-100v {
+  height: 100vh;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse !important;
+}
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.auth-txt-logo {
+  /* background: url("https://images.unsplash.com/photo-1567459169668-95d355371bda");
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+
+  /* color: hsla(0, 0%, 0%, 0.9); */
+  color: hsla(237, 89%, 48%, 0.9);
+  font: normal 140px Varela Round, sans-serif;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  /* animation: move linear 1000ms infinite; */
+}
+
+/* @keyframes move {
+  0% {
+    text-shadow: 2px -2px 0 hsla(0, 100%, 50%, 1),
+      1px -1px 0 hsla(0, 100%, 50%, 1), 2px -2px 0 hsla(0, 100%, 50%, 1),
+      1px -1px 0 hsla(0, 100%, 50%, 1), -2px 2px 0 hsla(180, 100%, 50%, 1),
+      -1px 1px 0 hsla(180, 100%, 50%, 1), -2px 2px 0 hsla(180, 100%, 50%, 1),
+      -1px 1px 0 hsla(180, 100%, 50%, 1);
+  }
+  25% {
+    text-shadow: -2px -2px 0 hsla(180, 100%, 50%, 1),
+      -1px -1px 0 hsla(180, 100%, 50%, 1), -2px -2px 0 hsla(180, 100%, 50%, 1),
+      -1px -1px 0 hsla(180, 100%, 50%, 1), 2px 2px 0 hsla(0, 100%, 50%, 1),
+      1px 1px 0 hsla(0, 100%, 50%, 1), 2px 2px 0 hsla(0, 100%, 50%, 1),
+      1px 1px 0 hsla(0, 100%, 50%, 1);
+  }
+  50% {
+    text-shadow: -2px 2px 0 hsla(0, 100%, 50%, 1),
+      -1px 1px 0 hsla(0, 100%, 50%, 1), -2px 2px 0 hsla(0, 100%, 50%, 1),
+      -1px 1px 0 hsla(0, 100%, 50%, 1), 2px -2px 0 hsla(180, 100%, 50%, 1),
+      1px -1px 0 hsla(180, 100%, 50%, 1), 2px -2px 0 hsla(180, 100%, 50%, 1),
+      1px -1px 0 hsla(180, 100%, 50%, 1);
+  }
+  75% {
+    text-shadow: 2px 2px 0 hsla(180, 100%, 50%, 1),
+      1px 1px 0 hsla(180, 100%, 50%, 1), 2px 2px 0 hsla(180, 100%, 50%, 1),
+      1px 1px 0 hsla(180, 100%, 50%, 1), -2px -2px 0 hsla(0, 100%, 50%, 1),
+      -1px -1px 0 hsla(0, 100%, 50%, 1), -2px -2px 0 hsla(0, 100%, 50%, 1),
+      -1px -1px 0 hsla(0, 100%, 50%, 1);
+  }
+  100% {
+    text-shadow: 2px -2px 0 hsla(0, 100%, 50%, 1),
+      1px -1px 0 hsla(0, 100%, 50%, 1), 2px -2px 0 hsla(0, 100%, 50%, 1),
+      1px -1px 0 hsla(0, 100%, 50%, 1), -2px 2px 0 hsla(180, 100%, 50%, 1),
+      -1px 1px 0 hsla(180, 100%, 50%, 1), -2px 2px 0 hsla(180, 100%, 50%, 1),
+      -1px 1px 0 hsla(180, 100%, 50%, 1);
+  }
+} */
+
+/* .auth-bg-image { */
+/* background: url(../images/background/auth-bg.png) no-repeat; */
+/* background-size: cover; */
+/* } */
+
+.auth-left-content,
+.signup-form {
+  width: 500px;
+}
+
+.weather-small .current-weather {
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0;
+  margin: 0;
+}
+
+.weather-city {
+  font-size: 1.4rem;
+  letter-spacing: 5px;
+}
+
+.create-account {
+  font-size: 3rem;
+}
+
+.auth-quick-links a {
+  border-radius: 30px;
+  padding: 0.5rem 5rem;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.sign-up {
+  /* border-radius: 30px; */
+  background-color: #4c31e1;
+  padding: 0.5rem 2rem;
+}
+
+.auth-logo {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.auth-logo p {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0;
+}
+
+.auth-logo span {
+  text-align: left;
+}
+
+.auth-logo span.break-line {
+  font-size: 1rem;
+  color: #868ba1;
+}
+
+.agree-privacy {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #868ba1;
+}
+
+.go-login {
+  vertical-align: -webkit-baseline-middle;
+}
+
+.remember-checkbox {
+  margin-bottom: 0px;
+  padding-top: 0.5rem;
+}
+
+.fingerprint-modal .modal-body {
+  padding: 5rem 4rem;
+}
+
+.fingerprint-modal .modal-body img {
+  width: 30%;
+  margin-top: 4rem;
+  border-radius: 50%;
+  padding: 1rem;
+  border: 3px solid #00b2e8;
+}
+
+@media (max-width: 998px) {
+  form {
+    width: 90%;
+    margin: 0px auto;
+  }
+}
+
+@media (max-width: 768px) {
+  form {
+    width: 100%;
+  }
+
+  .auth-logo {
+    margin-top: 3rem;
+  }
+}
