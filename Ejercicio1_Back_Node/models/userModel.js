@@ -40,7 +40,7 @@ const UserSchema = new mongoose.Schema(
     avatar: {
       type: String,
       required: false,
-      // default: "https://res.cloudinary.com/linda-leblanc/image/upload/v1634579968/test/sg8cthiiicwehkmnynsm.png"
+      default: "https://res.cloudinary.com/linda-leblanc/image/upload/v1634579968/test/sg8cthiiicwehkmnynsm.png"
     },
     mobile: {
       type: String,

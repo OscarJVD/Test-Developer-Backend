@@ -2,18 +2,19 @@ const mongoose = require("mongoose");
 const util = require('util')
 const fs = require('fs');
 const bcrypt = require("bcrypt");
+const { base64ToBlob, blobToBase64 } = require('base64-blob')
+// let b64toBlob = require('b64-to-blob');
+const b = require('based-blob');
+const { imageUpload } = require("../utils/functions");
 
 const crudCtrl = {
   createField: async (req, res) => {
     try {
+
       const { model, values, forallusersflag, newFields, fields, modelRef } = req.body;
 
-      // console.log(util.inspect(values));
-      // console.log('fields:')
-      // console.log(util.inspect(fields));
-      // return;
       const isArrFields = Array.isArray(fields)
-      const existsNewFields = newFields && newFields.length > 0 && Array.isArray(newFields)
+      const existsNewFields = newFields && newFields.length > 0 && Array.isArray(newFields) && typeof newFields[0] == 'object'
       const newFieldsFlag = isArrFields && existsNewFields ? true : false
 
       // VALIDACIÓN DE DATOS NO VACIOS
@@ -57,27 +58,22 @@ const crudCtrl = {
 
       if (newFieldsFlag) {
 
+        console.log('newFieldsFlag')
+
         let newFieldsArrLength = newFields.length
         for (let i = 0; i < newFieldsArrLength; i++) {
           let legible = newFields[i]
-          // console.log(legible);
           if (legible.inputType == 'password')
             newSchemaProps[legible.inputAndModelName] = await bcrypt.hash(legible.value, 12);
           else
             newSchemaProps[legible.inputAndModelName] = legible.value
         }
-        // newFields.map(async newField => {
-        //   if (newField.inputType == 'password')
-        //     newSchemaProps[newField.inputAndModelName] = await bcrypt.hash(newField.value, 12);
-        //   else
-        //     newSchemaProps[newField.inputAndModelName] = newField.value
-        // })
       } else {
         for (const key in values)
           newSchemaProps[key] = values[key]
       }
 
-      console.log(util.inspect(newSchemaProps))
+      // console.log(util.inspect(newSchemaProps))
 
       let models = mongoose.modelNames()
       if (models.includes(model)) {

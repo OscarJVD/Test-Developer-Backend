@@ -61,8 +61,8 @@ const Home = () => {
           },
           {
             inputAndModelName: 'avatar', // it would be differente to the parent model. It needs de validation
-            type: 'text',
-            inputType: 'text',
+            type: 'file',
+            inputType: 'image',
             title: 'avatar',
             required: true,
             unique: false,

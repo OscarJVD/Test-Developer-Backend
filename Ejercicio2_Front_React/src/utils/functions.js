@@ -88,6 +88,35 @@ function capFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
+const imageUpload = async (images) => {
+
+  // console.log(images);
+  let imgArr = []
+
+  for (const item of images) {
+    const formData = new FormData()
+
+    // Configuraciones para guardar las imgs en CLOUDINARY
+    formData.append('file', item)
+    formData.append('upload_preset', 'ionix_preset')
+    formData.append('cloud_name', 'ionix')
+
+    const res = await fetch('https://api.cloudinary.com/v1_1/ionix/image/upload', {
+      method: 'POST',
+      body: formData
+    })
+
+    const data = await res.json()
+
+    // console.log(data);
+
+    imgArr.push({ public_id: data.public_id, url: data.secure_url })
+  }
+
+  // Guardar en cloudinary y a la vez consulta la API DE nuestra imágenes
+  return imgArr
+}
+
 const removeDuplicateWords = s => s.replace(/(\b\S.+\b)(?=.*\1)/g, "").trim()
 
-export { isEmailTelOrUserName, getEsDate, sort, capFirstLetter, getRandomNum, removeDuplicateWords };
+export { isEmailTelOrUserName, getEsDate, sort, capFirstLetter, getRandomNum, removeDuplicateWords, imageUpload };

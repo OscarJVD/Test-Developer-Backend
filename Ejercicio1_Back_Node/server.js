@@ -10,7 +10,9 @@ const cookieParser = require("cookie-parser");
 const connectDB = require('./database/db');
 
 const app = express();
-app.use(express.json());
+app.use(express.json({limit: '50mb', extended: true}));
+app.use(express.urlencoded({limit: "50mb", extended: true, parameterLimit:50000}));
+app.use(express.text({ limit: '200mb' }));
 app.use(cors());
 app.use(cookieParser());
 

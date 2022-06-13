@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Tooltip from "react-simple-tooltip";
-import { postDataAPI, putDataAPI } from "../../utils/fetchData";
-import { capFirstLetter, getRandomNum, sort } from "../../utils/functions";
+import { postDataAPI, postFormDataAPI, putDataAPI } from "../../utils/fetchData";
+import { capFirstLetter, getRandomNum, imageUpload, sort } from "../../utils/functions";
 import Approve from "../alert/Approve";
 import MTable from './MTable';
 import { Oval } from 'react-loader-spinner'
@@ -11,6 +11,8 @@ import { useDispatch } from "react-redux";
 import { GLOBAL_TYPES } from "../../redux/actions/globalTypes";
 import ReactPasswordToggleIcon from "react-password-toggle-icon";
 import SimpleModalWrapped from "../alert/Modal";
+import imageCompression from 'browser-image-compression';
+import { base64ToBlob, blobToBase64 } from 'base64-blob'
 
 const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model, fields, optional }) => {
 
@@ -127,10 +129,25 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
             return;
           } else {
             let newTitle = field.title.toLowerCase().trim().replace('un ', '').replace('tu ', '').trim()
-            arrSimpleFieldsJoin.push({
+
+            // SOLO VALIDACIÓN PARA TIPO DE CAMPOS LARGO
+            let arrSimpleFieldsJoinProps = {
               field: field.inputAndModelName,
               title: capFirstLetter(newTitle)
-            })
+            }
+
+            // for (const key in values) {
+            //   if(typeof values[key] == 'object' && valu.inputAndModelName ==  )
+            // }
+
+            if (field.inputType == 'image') {
+
+              arrSimpleFieldsJoinProps.render = (rowData, index) => (
+                <img key={index} src={rowData[field.inputAndModelName]} alt="Avatar" style={{ width: '50px' }} />
+              )
+            }
+
+            arrSimpleFieldsJoin.push(arrSimpleFieldsJoinProps)
           }
         })
       } else {
@@ -150,10 +167,16 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
       let arrColumnsMTable = []
 
       arrSimpleFieldsJoin.map(field => {
-        arrColumnsMTable.push({
+
+        let arrColsTableProps = {
           title: field.title,
           field: field.field,
-        })
+          render: field.render,
+        }
+
+        console.log(field)
+
+        arrColumnsMTable.push(arrColsTableProps)
       })
 
       // Acciones
@@ -284,7 +307,7 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
 
   if (!arr || arr.length <= 0 || Object.keys(arr).length <= 0) {
 
-    const newItem = e => {
+    const prepareNewItem = e => {
       e.preventDefault()
       setAdd(true)
       setId('')
@@ -304,19 +327,19 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
       setValues(newArr)
     }
 
-    const saveItem = async () => {
+    const submitItem = async () => {
       try {
         console.log('item to save or edit', values)
-        let newValues = {}, newFields = [], tempObj = [];
+        let newValues = {}, newFields = [], tempObj = [], formDataPostFlag = false;
 
         // PREVALIDATION VALUES
-        Object.entries(values).map((val) => {
+        Object.entries(values).forEach((val) => {
           if (typeof val[1] != 'object') newValues[val[0]] = val[1]
           else tempObj.push(val[1])
         })
 
-        tempObj.map((val) => {
-          Object.entries(values).map(valueObj => {
+        tempObj.forEach((val) => {
+          Object.entries(values).forEach(valueObj => {
             if (val.inputAndModelName == valueObj[0]) {
               let newObj = {}
               newObj = val
@@ -329,14 +352,39 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
         // VALIDAR CAMPOS VACIOS
         let entries = Object.entries(newValues)
         let resReturnFlag = false
+
         entries.map(input => {
+
           if (input[1] == '' || !input[1]) {
             resReturnFlag = true
             setShowValidInputs({ flag: true, str: 'Todos los campos son obligatorios' })
           }
         })
+
         if (resReturnFlag) return;
         // END VALIDAR CAMPOS VACIOS
+
+        // Subida de imagen
+        // console.log(values)
+        for (const key in values) {
+          let dataType = typeof values[key] == 'object' && values[key].hasOwnProperty('value') ? values[key].value : values[key]
+          if (dataType instanceof Blob) {
+            // typeof values[key] == 'object' || values[key] instanceof File || values[key] instanceof Blob
+
+            let media = await imageUpload([dataType]);
+
+            console.log('media', media)
+            console.log(values);
+            console.log(key, media[0].url);
+            // if (media)
+            setValues({ ...values, [key]: media[0].url });
+            console.log(values);
+
+          }
+        }
+
+        // console.log(values)
+        // return;
 
         let res, newArr = []
 
@@ -367,8 +415,12 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
           newArr = []
           readData.forEach(row => newArr.push(row))
           newArr.push(values)
+
+          console.log(newArr);
           setReadData(newArr);
+
           res = await postDataAPI('createField', { model, values, fields, newFields, modelRef, forallusersflag }, auth.token)
+
           await getItems()
         }
 
@@ -392,6 +444,50 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
       console.log(values);
       setValues({ ...values, [name]: value });
       e.target.focus();
+    }
+
+    const handleImage = async (e) => {
+      const image = e.target.files[0];
+
+      console.log('image', image)
+      console.log('image', image instanceof File)
+
+      if (!image)
+        return dispatch({
+          type: 'NOTIFY',
+          payload: { error: 'La imagen no existe' },
+        });
+
+      if (image.type !== 'image/jpeg' && image.type !== 'image/png')
+        return dispatch({
+          type: 'NOTIFY',
+          payload: { error: 'El formato de imagen puede ser .jpeg o .png' },
+        });
+
+      if (image.size > 1024 * 1024 * 2)
+        // 2mb
+        return dispatch({
+          type: 'NOTIFY',
+          payload: {
+            error: 'El tamaño maximo aceptado para la imagen es de 2mb',
+          },
+        });
+      // IMG COMPRESOR
+      let options = {
+        maxSizeMB: 2, // 1
+        maxWidthOrHeight: 800,
+        useWebWorker: true,
+      };
+
+      let compressedImage;
+      if (image) compressedImage = await imageCompression(image, options);
+      if (!compressedImage)
+        return dispatch({
+          type: 'NOTIFY',
+          payload: { error: 'Error de compresión. Intentalo mas tarde' },
+        });
+
+      setValues({ ...values, [e.target.name]: compressedImage });
     }
 
     const handleDialogClose = () => {
@@ -502,8 +598,25 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
                           }
 
                           {
-                            ((field.inputType == 'password') &&
+                            ((field.inputType == 'image') &&
 
+                              <div className="mb-3">
+                                <label for={field.inputAndModelName} className="form-label">{`Ingresa ${field.title.toLowerCase()}`}</label>
+                                <input
+                                  type="file"
+                                  // value={values[field.inputAndModelName]}
+                                  id={field.inputAndModelName}
+                                  name={field.inputAndModelName}
+                                  onChange={handleImage}
+                                  className="form-control"
+                                  placeholder={`Ingresa ${field.title.toLowerCase()}`}
+                                />
+                              </div>
+                            )
+                          }
+
+                          {
+                            ((field.inputType == 'password') &&
 
                               <div className="form-group">
                                 <div className="position-relative">
@@ -571,7 +684,7 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
               <Tooltip content="Guardar" placement="bottom">
                 <button
                   type="button"
-                  onClick={saveItem}
+                  onClick={submitItem}
                   className={`btn btn-${id ? 'warning' : 'primary'} btn-sm text-initial`}
                 >
                   <i className={`fas fa-${id ? 'edit' : 'save'}`}></i> {id ? 'Editar' : 'Guardar'}
@@ -596,7 +709,7 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
             {
               !optional || optional.addBtnType == 'a' || !optional.hasOwnProperty('addBtnType') &&
               ((!forallusersflag && user && user.username === auth.user.username) && (readData.length < limit || !limit)) &&
-              <a href="#" className={`h-100 d-flex align-items-center ${add ? 'd-none' : ''}`} onClick={newItem}>
+              <a href="#" className={`h-100 d-flex align-items-center ${add ? 'd-none' : ''}`} onClick={prepareNewItem}>
                 <i className="fas fa-lg fa-plus-circle"></i>&nbsp;
                 <span ref={addRef}>
                   {optional && optional.textAddBtnType && optional.textAddBtnType != 'simple' ? addTitle : 'Nuevo'}
@@ -607,7 +720,7 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
             {
               optional && optional.addBtnType == 'button' &&
               ((!forallusersflag && user && user.username === auth.user.username) && (readData.length < limit || !limit)) &&
-              <button className={`btn btn-primary h-100 d-flex align-items-center ${add ? 'd-none' : ''}`} onClick={newItem}>
+              <button className={`btn btn-primary h-100 d-flex align-items-center ${add ? 'd-none' : ''}`} onClick={prepareNewItem}>
                 <i className="fas fa-lg fa-plus-circle"></i>&nbsp;
                 <span ref={addRef}>
                   {optional && optional.textAddBtnType && optional.textAddBtnType != 'simple' ? addTitle : 'Nuevo'}
