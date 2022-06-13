@@ -9,7 +9,8 @@
     "client": "cd client && npm run start",
     "install-all": "concurrently \"npm run server-install\" \"npm run client-install\" ",
     "dever": "concurrently \"npm run server\" \"npm run client\" ",
-    "dev": "concurrently \"npm run staticserver\" \"npm run client\" "
+    "dev": "concurrently \"npm run staticserver\" \"npm run client\" ",
+    "test": "jest"
   },
   "nodemonConfig": {
     "ignore": [
@@ -52,6 +53,7 @@
   },
   "devDependencies": {
     "jsdoc-http-plugin": "0.3.2",
-    "nodemon": "2.0.7"
+    "nodemon": "2.0.7",
+    "jest": "^28.1.1"
   }
 }
