@@ -52,7 +52,7 @@ const SideHead = ({ username, children, active }) => {
   }, [username, auth.user, profile.users, getUserProfileByUserName, dispatch, setUserData, setIntro]);
 
   const submitSetUserName = async (e) => {
-    
+
     postDataAPI(`setTxtUserName`, { txtUserName }, auth.token)
       .then((res) => {
         let newArr = [];
@@ -97,11 +97,11 @@ const SideHead = ({ username, children, active }) => {
           },
         });
       });
-  console.log('userData:',  userData);
+    console.log('userData:', userData);
 
   };
 
-  console.log('userData:',  userData);
+  console.log('userData:', userData);
 
   return (
     <>
@@ -121,9 +121,9 @@ const SideHead = ({ username, children, active }) => {
         userData.map((user, index) => (
           <div className="row profile-right-side-content" key={index}>
             <div className="user-profile">
-              <div className="row profile-rows">
-                <div className="col-md-3">
-                  <div className="profile-info-left">
+              <div className="row profile-rows justify-content-center d-flex">
+                <div className="col-md-4">
+                  <div className="profile-info-left p-5">
                     <div className="text-center ">
                       <div className="profile-img w-shadow pointer">
                         <div className="profile-img-overlay pointer"></div>
@@ -247,8 +247,16 @@ const SideHead = ({ username, children, active }) => {
                     </div>
                     <div className="intro mt-4 mv-hidden">
                       <div className={`${user.story ? '' : 'mb-3'} intro-item d-flex justify-content-between align-items-center mb-0 pb-0`}>
-                        <h3 className="intro-about m-0 p-0">Detalles</h3>
+                        <h1 className="intro-about m-0 p-0 text-center border-bottom">Detalles</h1>
                       </div>
+
+                      <p>
+                        {user.firstname ? <span><span className="fw-bold">Nombre: </span> {user.firstname}</span> : ''}
+                        <div></div>
+                        {user.lastname ? <span><span className="fw-bold">Apellido: </span> {user.lastname}</span> : ''}
+                        <div></div>
+                        {user.email ? <span><span className="fw-bold">Correo: </span> {user.email}</span> : ''}
+                      </p>
 
                       {user.story && (
                         <div

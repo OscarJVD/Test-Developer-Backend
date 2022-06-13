@@ -21,7 +21,7 @@ const Alert = () => {
       )
     } {
         alert.success && (<Toast msg={
-          { title: "Exito", body: alert.success }}
+          { title: "✅", body: alert.success }}
           handleShow={
             () => dispatch({ type: GLOBAL_TYPES.ALERT, payload: {} })}
           bgColor="bg-success" />

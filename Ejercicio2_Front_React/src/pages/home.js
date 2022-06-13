@@ -10,6 +10,14 @@ const Home = () => {
     <div>
 
       {/* <Crud
+        model="personalemail"
+        fields={{ personalemail: '' }}
+        addstr={{ personalemail: "tu correo personal" }}
+        auth={auth}
+        user={auth.user}
+      /> */}
+
+      {/* <Crud
         user={auth.user}
         model="user"
         fields={{ firstname: '', lastname: '', username: '', email: '', avatar: '', mobile: '' }}

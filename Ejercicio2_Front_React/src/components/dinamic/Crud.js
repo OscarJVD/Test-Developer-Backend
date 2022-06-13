@@ -143,7 +143,7 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
             if (field.inputType == 'image') {
 
               arrSimpleFieldsJoinProps.render = (rowData, index) => (
-                <img key={index} src={rowData[field.inputAndModelName]} alt="Avatar" style={{ width: '50px' }} />
+                <img key={index} src={rowData[field.inputAndModelName] ? rowData[field.inputAndModelName] : "https://res.cloudinary.com/solumobil/image/upload/v1639261011/user/icons8-usuario-masculino-en-c%C3%ADrculo-96_ipicdt.png"} alt="Avatar" style={{ width: '50px' }} />
               )
             }
 
@@ -332,11 +332,43 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
         console.log('item to save or edit', values)
         let newValues = {}, newFields = [], tempObj = [], formDataPostFlag = false;
 
+        let valuesKeys = Object.keys(values)
+        console.log(fields)
+
+        let stopFlag = false, stopMsg = ''
+        fields.forEach(field => {
+          if (field.required)
+            if (!valuesKeys.includes(field.inputAndModelName)) {
+              stopFlag = true
+              stopMsg = `El campo ${capFirstLetter(field.title.toLowerCase().replace('un ', '').replace('tu ', ''))} es requerido`
+            }
+        })
+
         // PREVALIDATION VALUES
         Object.entries(values).forEach((val) => {
-          if (typeof val[1] != 'object') newValues[val[0]] = val[1]
-          else tempObj.push(val[1])
+          if (typeof val[1] != 'object') {
+            console.log(val)
+            // if (!val[1]) {
+            //   stopFlag = true
+            // }
+
+            newValues[val[0]] = val[1]
+          }
+          else {
+            // if (!val[1].value) {
+            //   console.log(val)
+            //   stopFlag = true
+
+            // }
+            tempObj.push(val[1])
+          }
         })
+
+        if (stopFlag)
+          return dispatch({
+            type: GLOBAL_TYPES.ALERT,
+            payload: { error: stopMsg ? stopMsg : 'Todos los campos son obligatorios' },
+          });
 
         tempObj.forEach((val) => {
           Object.entries(values).forEach(valueObj => {
@@ -357,47 +389,33 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
 
           if (input[1] == '' || !input[1]) {
             resReturnFlag = true
-            setShowValidInputs({ flag: true, str: 'Todos los campos son obligatorios' })
+            return dispatch({
+              type: GLOBAL_TYPES.ALERT,
+              payload: { error: 'Todos los campos son obligatorios' },
+            });
           }
         })
 
         if (resReturnFlag) return;
         // END VALIDAR CAMPOS VACIOS
 
-        // Subida de imagen
-        // console.log(values)
-        for (const key in values) {
-          let dataType = typeof values[key] == 'object' && values[key].hasOwnProperty('value') ? values[key].value : values[key]
-          if (dataType instanceof Blob) {
-            // typeof values[key] == 'object' || values[key] instanceof File || values[key] instanceof Blob
-
-            let media = await imageUpload([dataType]);
-
-            console.log('media', media)
-            console.log(values);
-            console.log(key, media[0].url);
-            // if (media)
-            setValues({ ...values, [key]: media[0].url });
-            console.log(values);
-
-          }
-        }
-
-        // console.log(values)
-        // return;
-
-        let res, newArr = []
+        // PRE SET EDIT
+        let res, newArr = [], resMsg = '', idToEdit
 
         if (id) {
-          let idToEdit = id
+          idToEdit = id
           setAdd(false);
           setId('')
-
           newArr = []
+
           readData.forEach(row => {
             if (row._id == idToEdit) {
               Object.keys(values).forEach(key => {
-                row[key] = values[key]
+                if (values[key] instanceof Blob) {
+                  row[key] = URL.createObjectURL(values[key])
+                } else {
+                  row[key] = values[key]
+                }
               })
               newArr.push(row)
             } else {
@@ -406,10 +424,41 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
           })
 
           setReadData(newArr);
+        }
 
+        // PRE SET EDIT
+
+        // Subida de imagen
+        let newFmtValues = values
+        for (const key in values) {
+
+          if (values[key].hasOwnProperty('value') && values[key].value instanceof Blob && values[key].value) {
+
+            let media = await imageUpload([values[key].value]);
+            let imageURL = media[0].url
+            newFmtValues[key]['value'] = imageURL
+          }
+
+          if (!values[key].hasOwnProperty('value') && values[key] instanceof Blob && values[key]) {
+            let media2 = await imageUpload([values[key]]);
+            let imageURL2 = media2[0].url
+            newFmtValues[key] = imageURL2
+          }
+        }
+
+        delete newFmtValues.tableData
+        setValues(newFmtValues);
+        // END Subida de imagen
+
+        newFields = newFmtValues
+
+        if (id) {
           res = await putDataAPI(`editRow/${idToEdit}`, { model, values, forallusersflag }, auth.token)
           await getItems()
-        } else {
+          resMsg = 'Editado'
+        }
+
+        if (!id) {
           setAdd(false);
           setId('')
           newArr = []
@@ -422,7 +471,13 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
           res = await postDataAPI('createField', { model, values, fields, newFields, modelRef, forallusersflag }, auth.token)
 
           await getItems()
+          resMsg = 'Creado'
         }
+
+        return dispatch({
+          type: GLOBAL_TYPES.ALERT,
+          payload: { success: resMsg },
+        });
 
       } catch (error) {
         console.error(error)
@@ -447,27 +502,31 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
     }
 
     const handleImage = async (e) => {
-      const image = e.target.files[0];
+      let image = e.target.files[0];
 
       console.log('image', image)
       console.log('image', image instanceof File)
 
-      if (!image)
+      if (!image) {
+
+        // debugger
         return dispatch({
-          type: 'NOTIFY',
+          type: GLOBAL_TYPES.ALERT,
           payload: { error: 'La imagen no existe' },
         });
-
-      if (image.type !== 'image/jpeg' && image.type !== 'image/png')
+      }
+      if (image.type !== 'image/jpeg' && image.type !== 'image/png') {
+        // debugger
         return dispatch({
-          type: 'NOTIFY',
+          type: GLOBAL_TYPES.ALERT,
           payload: { error: 'El formato de imagen puede ser .jpeg o .png' },
         });
+      }
 
       if (image.size > 1024 * 1024 * 2)
         // 2mb
         return dispatch({
-          type: 'NOTIFY',
+          type: GLOBAL_TYPES.ALERT,
           payload: {
             error: 'El tamaño maximo aceptado para la imagen es de 2mb',
           },
@@ -483,11 +542,28 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
       if (image) compressedImage = await imageCompression(image, options);
       if (!compressedImage)
         return dispatch({
-          type: 'NOTIFY',
+          type: GLOBAL_TYPES.ALERT,
           payload: { error: 'Error de compresión. Intentalo mas tarde' },
         });
 
-      setValues({ ...values, [e.target.name]: compressedImage });
+      let definitiveImage = compressedImage
+      console.log(compressedImage, "HPAPPAPA");
+
+      let indexObjImage, newValuesObje = values;
+
+      Object.entries(values).forEach((valu, index) => {
+        newValuesObje[valu[0]] = valu[1]
+        if (typeof valu[1] == 'object' && (valu[1].inputAndModelName == e.target.name || valu[1].inputAndModelName == e.target.name)) {
+          newValuesObje[index].value = definitiveImage
+        }
+      })
+
+      console.log(indexObjImage);
+
+      setValues({ ...values, [e.target.name]: definitiveImage });
+      // setValues({ ...values, [indexObjImage]: {["value"]: definitiveImage} });
+
+      console.log(values);
     }
 
     const handleDialogClose = () => {
@@ -530,6 +606,11 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
           })
           setReadData(newArr);
           // END ACTUALIZAR ESTADO SIN EL ITEM ELIMINADO
+
+          return dispatch({
+            type: GLOBAL_TYPES.ALERT,
+            payload: { success: 'Eliminado' },
+          });
 
         }
       } catch (error) {
@@ -601,7 +682,7 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
                             ((field.inputType == 'image') &&
 
                               <div className="mb-3">
-                                <label for={field.inputAndModelName} className="form-label">{`Ingresa ${field.title.toLowerCase()}`}</label>
+                                <label htmlFor={field.inputAndModelName} className="form-label">{`Ingresa ${field.title.toLowerCase()}`}</label>
                                 <input
                                   type="file"
                                   // value={values[field.inputAndModelName]}

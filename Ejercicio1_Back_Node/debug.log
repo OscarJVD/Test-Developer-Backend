@@ -7,405 +7,56 @@ El archivo EXISTE! ../models/userModel
 El archivo EXISTE! ../models/userModel
 El archivo EXISTE! ../models/userModel
 El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
 {
-  '0': {
-    inputAndModelName: 'firstname',
-    type: 'text',
-    inputType: 'text',
-    title: 'Tu primer nombre',
-    required: true,
-    regex: '^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$',
-    unique: false,
-    value: 'Oscar'
-  },
-  '1': {
-    inputAndModelName: 'lastname',
-    type: 'text',
-    inputType: 'text',
-    title: 'segundo nombre',
-    required: true,
-    unique: false,
-    value: 'Vargas'
-  },
-  '2': {
-    inputAndModelName: 'username',
-    type: 'text',
-    inputType: 'text',
-    title: 'usuario',
-    required: true,
-    unique: false,
-    value: 'o'
-  },
-  '3': {
-    inputAndModelName: 'email',
-    type: 'text',
-    inputType: 'text',
-    title: 'correo',
-    required: true,
-    unique: false
-  },
-  '4': {
-    inputAndModelName: 'avatar',
-    type: 'file',
-    inputType: 'image',
-    title: 'avatar',
-    required: true,
-    unique: false,
-    value: {
-      name: 'WhatsApp Image 2022-06-07 at 3.01.54 PM.jpeg',
-      lastModified: 1654632124639
-    }
-  },
-  '5': {
-    inputAndModelName: 'mobile',
-    type: 'text',
-    inputType: 'text',
-    title: 'teléfono',
-    required: true,
-    unique: false
-  },
-  '6': {
-    inputAndModelName: 'password',
-    type: 'text',
-    inputType: 'password',
-    title: 'contraseña',
-    required: true,
-    unique: false,
-    tableShow: false,
-    value: '$2b$12$X6yS/bAPEMq4qKwXqx.9EuqQcyaWZ3x2.su86lVzldPEU3lYHfIzK'
-  },
-  avatar: {
-    name: 'WhatsApp Image 2022-06-07 at 3.01.54 PM.jpeg',
-    lastModified: 1654632124639
-  },
+  '0': 'Oscar',
+  '1': 'Vargas',
+  '2': 'o',
+  '3': undefined,
+  '4': undefined,
+  '5': '3133043714',
+  '6': undefined,
   firstname: 'Oscar',
   lastname: 'Vargas',
-  password: '$2b$12$X6yS/bAPEMq4qKwXqx.9EuqQcyaWZ3x2.su86lVzldPEU3lYHfIzK',
-  username: 'o'
-}
-{
-  firstname: 'Oscar',
-  lastname: 'Vargas',
-  password: '$2b$12$4x/K1YaZP902DnyGBFp0/ePxQLj951uFqoIAIoSu1f/BYR6XzAAnS',
+  mobile: '3133043714',
   username: 'o'
 }
 El archivo EXISTE! ../models/userModel
 El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel
 {
-  '0': {
-    inputAndModelName: 'firstname',
-    type: 'text',
-    inputType: 'text',
-    title: 'Tu primer nombre',
-    required: true,
-    regex: '^[a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$',
-    unique: false,
-    value: 'Oscar'
-  },
-  '1': {
-    inputAndModelName: 'lastname',
-    type: 'text',
-    inputType: 'text',
-    title: 'segundo nombre',
-    required: true,
-    unique: false,
-    value: 'Vargas'
-  },
-  '2': {
-    inputAndModelName: 'username',
-    type: 'text',
-    inputType: 'text',
-    title: 'usuario',
-    required: true,
-    unique: false,
-    value: 'o'
-  },
-  '3': {
-    inputAndModelName: 'email',
-    type: 'text',
-    inputType: 'text',
-    title: 'correo',
-    required: true,
-    unique: false,
-    value: 'adventurejavis@gmail.com'
-  },
-  '4': {
-    inputAndModelName: 'avatar',
-    type: 'file',
-    inputType: 'image',
-    title: 'avatar',
-    required: true,
-    unique: false,
-    value: {
-      name: 'WhatsApp Image 2022-06-02 at 3.49.14 PM.jpeg',
-      lastModified: 1654203153315
-    }
-  },
-  '5': {
-    inputAndModelName: 'mobile',
-    type: 'text',
-    inputType: 'text',
-    title: 'teléfono',
-    required: true,
-    unique: false
-  },
-  '6': {
-    inputAndModelName: 'password',
-    type: 'text',
-    inputType: 'password',
-    title: 'contraseña',
-    required: true,
-    unique: false,
-    tableShow: false,
-    value: 'delfines'
-  },
-  avatar: {
-    name: 'WhatsApp Image 2022-06-02 at 3.49.14 PM.jpeg',
-    lastModified: 1654203153315
-  },
+  '0': 'Oscar',
+  '1': 'Vargas',
+  '2': 'o',
+  '3': 'adventurejavis@gmail.com',
+  '4': 'https://res.cloudinary.com/ionix/image/upload/v1655146682/ionix_test/yd76dcvdsebhjf2dslld.jpg',
+  '5': '3133043714',
+  '6': 'delfines',
   firstname: 'Oscar',
   lastname: 'Vargas',
-  password: 'delfines',
+  mobile: '3133043714',
   username: 'o',
-  email: 'adventurejavis@gmail.com'
-}
-{
-  firstname: 'Oscar',
-  lastname: 'Vargas',
-  password: '$2b$12$xv11HlmYrHzWT1jNE4PIK.FSAFDrO1zxfd1ubJ7gbJSs4OQWqWZIa',
-  username: 'o',
-  email: 'adventurejavis@gmail.com'
+  avatar: 'https://res.cloudinary.com/ionix/image/upload/v1655146684/ionix_test/motx8fen5xy6esacx7xv.jpg',
+  email: 'adventurejavis@gmail.com',
+  password: '$2b$12$gxvSnGKblJqeTzOGTOpzV.c9fheIIjcu74WaJJZYNAuWZsih9ft0S'
 }
 El archivo EXISTE! ../models/userModel
 El archivo EXISTE! ../models/userModel
-newFieldsFlag
-Collection user exists
-ERROR - ERROR - ERROR
-Error: user validation failed: avatar: Cast to string failed for value "{
-  name: 'WhatsApp Image 2022-06-07 at 2.53.27 PM.jpeg',
-  lastModified: 1654631611822
-}" (type Object) at path "avatar", lastname: Path `lastname` is required., firstname: Path `firstname` is required.
-    at ValidationError.inspect (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\error\validation.js:48:26)
-    at formatValue (node:internal/util/inspect:763:19)
-    at Object.inspect (node:internal/util/inspect:340:10)
-    at createField (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\controllers\crudCtrl.js:145:24)
-    at runMicrotasks (<anonymous>)
-    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
-  errors: {
-    avatar: CastError: Cast to string failed for value "{
-      name: 'WhatsApp Image 2022-06-07 at 2.53.27 PM.jpeg',
-      lastModified: 1654631611822
-    }" (type Object) at path "avatar"
-        at SchemaString.cast (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schema\string.js:603:11)
-        at SchemaString.SchemaType.applySetters (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1182:12)
-        at model.$set (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:1407:20)
-        at model.$set (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:1153:14)
-        at model.Document (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:161:12)
-        at model.Model (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\model.js:114:12)
-        at new model (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\model.js:4830:15)
-        at createField (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\controllers\crudCtrl.js:83:24) {
-      stringValue: '"{\n' +
-        "  name: 'WhatsApp Image 2022-06-07 at 2.53.27 PM.jpeg',\n" +
-        '  lastModified: 1654631611822\n' +
-        '}"',
-      messageFormat: undefined,
-      kind: 'string',
-      value: [Object],
-      path: 'avatar',
-      reason: null,
-      valueType: 'Object'
-    },
-    lastname: ValidatorError: Path `lastname` is required.
-        at validate (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1323:13)
-        at SchemaString.SchemaType.doValidate (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1307:7)
-        at C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:2757:18
-        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
-      properties: [Object],
-      kind: 'required',
-      path: 'lastname',
-      value: undefined,
-      reason: undefined,
-      [Symbol(mongoose:validatorError)]: true
-    },
-    firstname: ValidatorError: Path `firstname` is required.
-        at validate (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1323:13)
-        at SchemaString.SchemaType.doValidate (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1307:7)
-        at C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:2757:18
-        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
-      properties: [Object],
-      kind: 'required',
-      path: 'firstname',
-      value: undefined,
-      reason: undefined,
-      [Symbol(mongoose:validatorError)]: true
-    }
-  },
-  _message: 'user validation failed'
-}
-Error: user validation failed: avatar: Cast to string failed for value "{
-  name: 'WhatsApp Image 2022-06-07 at 2.53.27 PM.jpeg',
-  lastModified: 1654631611822
-}" (type Object) at path "avatar", lastname: Path `lastname` is required., firstname: Path `firstname` is required.
-    at ValidationError.inspect (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\error\validation.js:48:26)
-    at formatValue (node:internal/util/inspect:763:19)
-    at inspect (node:internal/util/inspect:340:10)
-    at formatWithOptionsInternal (node:internal/util/inspect:2006:40)
-    at Object.format (node:internal/util/inspect:1880:10)
-    at console.log (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\server.js:51:23)
-    at createField (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\controllers\crudCtrl.js:146:15)
-    at runMicrotasks (<anonymous>)
-    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
-  errors: {
-    avatar: CastError: Cast to string failed for value "{
-      name: 'WhatsApp Image 2022-06-07 at 2.53.27 PM.jpeg',
-      lastModified: 1654631611822
-    }" (type Object) at path "avatar"
-        at SchemaString.cast (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schema\string.js:603:11)
-        at SchemaString.SchemaType.applySetters (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1182:12)
-        at model.$set (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:1407:20)
-        at model.$set (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:1153:14)
-        at model.Document (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:161:12)
-        at model.Model (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\model.js:114:12)
-        at new model (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\model.js:4830:15)
-        at createField (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\controllers\crudCtrl.js:83:24) {
-      stringValue: '"{\n' +
-        "  name: 'WhatsApp Image 2022-06-07 at 2.53.27 PM.jpeg',\n" +
-        '  lastModified: 1654631611822\n' +
-        '}"',
-      messageFormat: undefined,
-      kind: 'string',
-      value: [Object],
-      path: 'avatar',
-      reason: null,
-      valueType: 'Object'
-    },
-    lastname: ValidatorError: Path `lastname` is required.
-        at validate (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1323:13)
-        at SchemaString.SchemaType.doValidate (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1307:7)
-        at C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:2757:18
-        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
-      properties: [Object],
-      kind: 'required',
-      path: 'lastname',
-      value: undefined,
-      reason: undefined,
-      [Symbol(mongoose:validatorError)]: true
-    },
-    firstname: ValidatorError: Path `firstname` is required.
-        at validate (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1323:13)
-        at SchemaString.SchemaType.doValidate (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1307:7)
-        at C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:2757:18
-        at processTicksAndRejections (node:internal/process/task_queues:78:11) {
-      properties: [Object],
-      kind: 'required',
-      path: 'firstname',
-      value: undefined,
-      reason: undefined,
-      [Symbol(mongoose:validatorError)]: true
-    }
-  },
-  _message: 'user validation failed'
-}
+Mongoose default connection disconnected
+Mongoose default connection open to mongodb+srv://ionix:Ionixdompro@cluster0.55lfa.mongodb.net/?retryWrites=true&w=majority
+Mongoose default connection is open
 El archivo EXISTE! ../models/userModel
 El archivo EXISTE! ../models/userModel
-El archivo EXISTE! ../models/userModel
-newFieldsFlag
-Collection user exists
-ERROR - ERROR - ERROR
-Error: user validation failed: avatar: Cast to string failed for value "{
-  name: 'WhatsApp Image 2022-05-31 at 3.11.25 PM.jpeg',
-  lastModified: 1654028027959
-}" (type Object) at path "avatar"
-    at ValidationError.inspect (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\error\validation.js:48:26)
-    at formatValue (node:internal/util/inspect:763:19)
-    at Object.inspect (node:internal/util/inspect:340:10)
-    at createField (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\controllers\crudCtrl.js:145:24)
-    at runMicrotasks (<anonymous>)
-    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
-  errors: {
-    avatar: CastError: Cast to string failed for value "{
-      name: 'WhatsApp Image 2022-05-31 at 3.11.25 PM.jpeg',
-      lastModified: 1654028027959
-    }" (type Object) at path "avatar"
-        at SchemaString.cast (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schema\string.js:603:11)
-        at SchemaString.SchemaType.applySetters (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1182:12)
-        at model.$set (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:1407:20)
-        at model.$set (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:1153:14)
-        at model.Document (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:161:12)
-        at model.Model (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\model.js:114:12)
-        at new model (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\model.js:4830:15)
-        at createField (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\controllers\crudCtrl.js:83:24) {
-      stringValue: '"{\n' +
-        "  name: 'WhatsApp Image 2022-05-31 at 3.11.25 PM.jpeg',\n" +
-        '  lastModified: 1654028027959\n' +
-        '}"',
-      messageFormat: undefined,
-      kind: 'string',
-      value: [Object],
-      path: 'avatar',
-      reason: null,
-      valueType: 'Object'
-    }
-  },
-  _message: 'user validation failed'
-}
-Error: user validation failed: avatar: Cast to string failed for value "{
-  name: 'WhatsApp Image 2022-05-31 at 3.11.25 PM.jpeg',
-  lastModified: 1654028027959
-}" (type Object) at path "avatar"
-    at ValidationError.inspect (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\error\validation.js:48:26)
-    at formatValue (node:internal/util/inspect:763:19)
-    at inspect (node:internal/util/inspect:340:10)
-    at formatWithOptionsInternal (node:internal/util/inspect:2006:40)
-    at Object.format (node:internal/util/inspect:1880:10)
-    at console.log (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\server.js:51:23)
-    at createField (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\controllers\crudCtrl.js:146:15)
-    at runMicrotasks (<anonymous>)
-    at processTicksAndRejections (node:internal/process/task_queues:96:5) {
-  errors: {
-    avatar: CastError: Cast to string failed for value "{
-      name: 'WhatsApp Image 2022-05-31 at 3.11.25 PM.jpeg',
-      lastModified: 1654028027959
-    }" (type Object) at path "avatar"
-        at SchemaString.cast (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schema\string.js:603:11)
-        at SchemaString.SchemaType.applySetters (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\schematype.js:1182:12)
-        at model.$set (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:1407:20)
-        at model.$set (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:1153:14)
-        at model.Document (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\document.js:161:12)
-        at model.Model (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\model.js:114:12)
-        at new model (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\node_modules\mongoose\lib\model.js:4830:15)
-        at createField (C:\Users\HP\Documents\SlidesFace\Prueba_Ionix_CRUD_Pruebas_Unitarias\Ejercicio1_Back_Node\controllers\crudCtrl.js:83:24) {
-      stringValue: '"{\n' +
-        "  name: 'WhatsApp Image 2022-05-31 at 3.11.25 PM.jpeg',\n" +
-        '  lastModified: 1654028027959\n' +
-        '}"',
-      messageFormat: undefined,
-      kind: 'string',
-      value: [Object],
-      path: 'avatar',
-      reason: null,
-      valueType: 'Object'
-    }
-  },
-  _message: 'user validation failed'
-}

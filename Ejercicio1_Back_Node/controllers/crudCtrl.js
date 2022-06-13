@@ -2,10 +2,10 @@ const mongoose = require("mongoose");
 const util = require('util')
 const fs = require('fs');
 const bcrypt = require("bcrypt");
-const { base64ToBlob, blobToBase64 } = require('base64-blob')
+// const { base64ToBlob, blobToBase64 } = require('base64-blob')
 // let b64toBlob = require('b64-to-blob');
-const b = require('based-blob');
-const { imageUpload } = require("../utils/functions");
+// const b = require('based-blob');
+// const { imageUpload } = require("../utils/functions");
 
 const crudCtrl = {
   createField: async (req, res) => {
@@ -14,7 +14,8 @@ const crudCtrl = {
       const { model, values, forallusersflag, newFields, fields, modelRef } = req.body;
 
       const isArrFields = Array.isArray(fields)
-      const existsNewFields = newFields && newFields.length > 0 && Array.isArray(newFields) && typeof newFields[0] == 'object'
+      const existsNewFields = newFields && newFields.length > 0 && Array.isArray(newFields)
+      // && typeof newFields[0] == 'object'
       const newFieldsFlag = isArrFields && existsNewFields ? true : false
 
       // VALIDACIÓN DE DATOS NO VACIOS
@@ -58,7 +59,7 @@ const crudCtrl = {
 
       if (newFieldsFlag) {
 
-        console.log('newFieldsFlag')
+        console.log('newFieldsFlag', newFieldsFlag)
 
         let newFieldsArrLength = newFields.length
         for (let i = 0; i < newFieldsArrLength; i++) {
@@ -73,7 +74,7 @@ const crudCtrl = {
           newSchemaProps[key] = values[key]
       }
 
-      // console.log(util.inspect(newSchemaProps))
+      console.log(util.inspect(newSchemaProps))
 
       let models = mongoose.modelNames()
       if (models.includes(model)) {
@@ -153,10 +154,13 @@ const crudCtrl = {
 
     let filter = {}
 
+    if (!req.authUser || !req.authUser._id)
+      return res.status(400).json({ msg: "Por favor inicia sesión." });
+
     if (!forallusersflag) {
       filter.user = req.authUser._id
     } else {
-      if (req.authUser.role != 'admin')
+      if (req.authUser && req.authUser.role != 'admin')
         filter.user = req.authUser._id
     }
 
@@ -169,7 +173,7 @@ const crudCtrl = {
     if (fs.existsSync(filePath)) {
       console.log("El archivo EXISTE! " + `../models/${model}Model`);
       const dinamicModelRef = require(`../models/${model}Model`)
-      const data = await dinamicModelRef.find(filter)
+      const data = await dinamicModelRef.find(filter).select("-password")
 
       res.json({
         msg: "Datos de los campos"
@@ -189,7 +193,7 @@ const crudCtrl = {
       const { model, forallusersflag, values } = req.body;
 
       // console.log(model);
-      console.log(util.inspect(values))
+      // console.log(util.inspect(values))
       let entries = Object.entries(values)
 
       let resReturnFlag = false
@@ -203,41 +207,14 @@ const crudCtrl = {
 
       // let entriesLength = entries.length
       for (const key in values) {
-        if (typeof values[key] != 'object') {
-          if (key == 'password') {
-            newValues[key] = await bcrypt.hash(values[key], 12);
-          } else {
-            newValues[key] = values[key]
-          }
+        // if (typeof values[key] != 'object') {
+        let mainKeyValue = typeof values[key] == 'object' ? values[key].value : values[key]
+        if (key == 'password') {
+          newValues[key] = await bcrypt.hash(mainKeyValue, 12);
+        } else {
+          newValues[key] = mainKeyValue
         }
       }
-      // entries.map(async (item, index) => {
-      //   if (typeof item[1] != 'object') {
-      //     console.log(item);
-      //     console.log(item[0] == 'password');
-      //     if (item[0] != 'password') {
-      //       newValues[item[0]] = item[1]
-      //     } else {
-      //       newValues[item[0]] = await bcrypt.hash(item[1], 12);
-      //     }
-      //   }
-      // })
-
-      // entries.map(async (item, index) => {
-      //   let newItem = item
-      //   if (typeof newItem[1] == 'object') {
-      //     if (newItem[1].inputType == 'password') {
-      //       newItem[1].value = await bcrypt.hash(newItem[1].value, 12);
-      //     }
-      //     newValues[index.toString()] = newItem[1]
-      //   } else {
-      //     if (newItem[0] == 'password') {
-      //       newItem[1] = await bcrypt.hash(newItem[1], 12);
-      //     }
-
-      //     newValues[newItem[0]] = newItem[1]
-      //   }
-      // })
 
       console.log(util.inspect(newValues));
 
@@ -253,7 +230,7 @@ const crudCtrl = {
       if (model == 'user') delete filter.user
       // console.log(filter);
       const DinamicModelCall = require(`../models/${model}Model`)
-      const docUpdate = await DinamicModelCall.findOneAndUpdate(filter, newValues, { new: true });
+      await DinamicModelCall.findOneAndUpdate(filter, newValues);
 
       // console.log(util.inspect(docUpdate));
 
