@@ -10,9 +10,9 @@ import 'react-autocomplete-input/dist/bundle.css';
 import { useDispatch } from "react-redux";
 import { GLOBAL_TYPES } from "../../redux/actions/globalTypes";
 import ReactPasswordToggleIcon from "react-password-toggle-icon";
-import SimpleModalWrapped from "../alert/Modal";
+// import SimpleModalWrapped from "../alert/Modal";
 import imageCompression from 'browser-image-compression';
-import { base64ToBlob, blobToBase64 } from 'base64-blob'
+import { Box, Modal } from "@mui/material";
 
 const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model, fields, optional }) => {
 
@@ -35,6 +35,29 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
   const [id, setId] = useState('');
   const [itemToDelete, setItemToDelete] = useState(null)
   const dispatch = useDispatch();
+  const [open, setOpenModal] = useState(false);
+
+  const modalStyle = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    pt: 2,
+    px: 4,
+    pb: 3,
+  };
+
+  const handleOpen = () => {
+    setOpenModal(true);
+  };
+
+  const handleClose = () => {
+    setOpenModal(false);
+  };
 
   if (!model) model = 'user'
   if (!modelRef) modelRef = 'user'
@@ -47,7 +70,7 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
   }
 
   const handleEditItem = (item) => {
-    // console.log(readData)
+    setOpenModal(true);
     console.log('item', item);
     console.log('values', values);
     console.log('fields', fields);
@@ -135,10 +158,6 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
               field: field.inputAndModelName,
               title: capFirstLetter(newTitle)
             }
-
-            // for (const key in values) {
-            //   if(typeof values[key] == 'object' && valu.inputAndModelName ==  )
-            // }
 
             if (field.inputType == 'image') {
 
@@ -313,8 +332,8 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
       setId('')
 
       setTimeout(() => {
-        console.log(inputsNewItemRef.current.children)
-        if (inputsNewItemRef.current.children && inputsNewItemRef.current.children.length > 0) {
+        if (inputsNewItemRef.current && inputsNewItemRef.current.children && inputsNewItemRef.current.children.length > 0) {
+          console.log(inputsNewItemRef.current.children)
           Array.from(inputsNewItemRef.current.children).forEach((div, index) => {
             if (inputsNewItemRef.current.children[index].children[0] && inputsNewItemRef.current.children[index].children[0].type == 'text' && inputsNewItemRef.current.children[index].children[0].placeholder) {
               inputsNewItemRef.current.children[index].children[0].placeholder = inputsNewItemRef.current.children[index].children[0].placeholder.replace(/,/g, '')
@@ -348,18 +367,10 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
         Object.entries(values).forEach((val) => {
           if (typeof val[1] != 'object') {
             console.log(val)
-            // if (!val[1]) {
-            //   stopFlag = true
-            // }
 
             newValues[val[0]] = val[1]
           }
           else {
-            // if (!val[1].value) {
-            //   console.log(val)
-            //   stopFlag = true
-
-            // }
             tempObj.push(val[1])
           }
         })
@@ -399,6 +410,8 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
         if (resReturnFlag) return;
         // END VALIDAR CAMPOS VACIOS
 
+        setOpenModal(false)
+
         // PRE SET EDIT
         let res, newArr = [], resMsg = '', idToEdit
 
@@ -427,7 +440,7 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
         }
 
         // PRE SET EDIT
-
+        setAdd(false);
         // Subida de imagen
         let newFmtValues = values
         for (const key in values) {
@@ -561,7 +574,6 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
       console.log(indexObjImage);
 
       setValues({ ...values, [e.target.name]: definitiveImage });
-      // setValues({ ...values, [indexObjImage]: {["value"]: definitiveImage} });
 
       console.log(values);
     }
@@ -620,16 +632,150 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
     };
 
     const handleCancelAdd = () => {
+      setOpenModal(false);
       setAdd(false);
       setId('');
     }
+
+    let inputsBox = <div className={`input-group ${add ? '' : 'd-none'}`}>
+
+      {/* INPUTS */}
+      <div ref={inputsNewItemRef} className="justify-content-center" style={{ display: 'contents' }}>
+        {
+          manyDinamicFieldsFlag
+            ?
+            (
+              isArrFields || Array.isArray(fields)
+                ?
+                fields.map((field, index) => ( // En construcción lo dinamico muy dinamico
+                  <div className="col-12 my-1" key={index}>
+
+                    {
+                      ((field.inputType == 'text' || field.inputType == 'string' || !field.inputType) &&
+                        <input
+                          type="text"
+                          value={values[field.inputAndModelName]}
+                          id={field.inputAndModelName}
+                          name={field.inputAndModelName}
+                          onChange={handleChange}
+                          className="form-control"
+                          placeholder={`Ingresa ${field.title.toLowerCase()}`}
+                        />
+                      )
+                    }
+
+                    {
+                      ((field.inputType == 'image') &&
+
+                        <div className="mb-3">
+                          <label htmlFor={field.inputAndModelName} className="form-label">{`Ingresa ${field.title.toLowerCase()}`}</label>
+                          <input
+                            type="file"
+                            // value={values[field.inputAndModelName]}
+                            id={field.inputAndModelName}
+                            name={field.inputAndModelName}
+                            onChange={handleImage}
+                            className="form-control"
+                            placeholder={`Ingresa ${field.title.toLowerCase()}`}
+                          />
+                        </div>
+                      )
+                    }
+
+                    {
+                      ((field.inputType == 'password') &&
+
+                        <div className="form-group">
+                          <div className="position-relative">
+                            <input
+                              type="password"
+                              ref={inputPasswordIconRef}
+                              value={values[field.inputAndModelName]}
+                              id={field.inputAndModelName}
+                              name={field.inputAndModelName}
+                              onChange={handleChange}
+                              className="form-control my-2"
+                              placeholder={`Ingresa ${field.title.toLowerCase()}`}
+                            />
+
+                            <ReactPasswordToggleIcon
+                              inputRef={inputPasswordIconRef}
+                              showIcon={showIcon}
+                              hideIcon={hideIcon}
+                            />
+                          </div>
+                        </div>
+                      )
+                    }
+
+                  </div>
+                ))
+                :
+                Object.keys(fields).map((field, index) => ( // En construcción lo dinamico muy dinamico
+                  <div className="col-12 my-1" key={index}>
+
+                    {
+                      field.inputType == 'text' || !field.inputType &&
+                      <input
+                        type="text"
+                        value={values[field]}
+                        // id={field}
+                        name={field}
+                        onChange={handleChange}
+                        className="form-control"
+                        placeholder={
+                          Object.entries(addstr).map(placeholder => {
+                            if (placeholder[0] == field)
+                              return ('Ingresa ' + (placeholder[1] != ',' ? placeholder[1].replace(/,/g, '') : '').replace(' - ', '').replace(" y", "y")).replace(/,/g, '')
+                          })
+                        }
+                      />
+                    }
+                  </div>
+                ))
+            )
+            :
+            // Nunca va a llegar acá
+            <div className="col-12 my-1">
+              <input type="text" value={values[Object.keys(fields)[0][0]]} id={Object.keys(fields)[0][0]} name={Object.keys(fields)[0][0]} onChange={handleChange}
+                className="form-control"
+                placeholder={`Ingresa ${Object.entries(addstr)[0][1].replace(/,/g, '')}`}
+              />
+            </div>
+        }
+      </div>
+      {/* END INPUTS */}
+
+      {/* SAVE - EDIT - CANCEL BUTTON */}
+      <div className="col-12 justify-content-center text-center mt-2 mb-3">
+        <Tooltip content="Guardar" placement="bottom">
+          <button
+            type="button"
+            onClick={submitItem}
+            className={`btn btn-${id ? 'warning' : 'primary'} btn-sm text-initial`}
+          >
+            <i className={`fas fa-${id ? 'edit' : 'save'}`}></i> {id ? 'Editar' : 'Guardar'}
+          </button>
+        </Tooltip>
+
+        <Tooltip content="Cancelar" placement="bottom">
+          <button
+            type="button"
+            onClick={handleCancelAdd}
+            className="btn btn-danger btn-sm text-initial ms-2"
+          >
+            <i className="fas fa-window-close"></i> Cancelar
+          </button>
+        </Tooltip>
+      </div>
+    </div>
 
     console.log('fields', fields);
 
     return (
       <>
         <div className="w-100 p-4">
-          <SimpleModalWrapped />
+          {/* <SimpleModalWrapped /> */}
 
           {
             showValidInputs.flag &&
@@ -651,142 +797,27 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
             handleAction={handleDelete}
           />
 
-          <div className={`input-group ${add ? '' : 'd-none'}`}>
-
-            {/* INPUTS */}
-            <div ref={inputsNewItemRef} className="justify-content-center" style={{ display: 'contents' }}>
-              {
-                manyDinamicFieldsFlag
-                  ?
-                  (
-                    isArrFields || Array.isArray(fields)
-                      ?
-                      fields.map((field, index) => ( // En construcción lo dinamico muy dinamico
-                        <div className="col-12 my-1" key={index}>
-
-                          {
-                            ((field.inputType == 'text' || field.inputType == 'string' || !field.inputType) &&
-                              <input
-                                type="text"
-                                value={values[field.inputAndModelName]}
-                                id={field.inputAndModelName}
-                                name={field.inputAndModelName}
-                                onChange={handleChange}
-                                className="form-control"
-                                placeholder={`Ingresa ${field.title.toLowerCase()}`}
-                              />
-                            )
-                          }
-
-                          {
-                            ((field.inputType == 'image') &&
-
-                              <div className="mb-3">
-                                <label htmlFor={field.inputAndModelName} className="form-label">{`Ingresa ${field.title.toLowerCase()}`}</label>
-                                <input
-                                  type="file"
-                                  // value={values[field.inputAndModelName]}
-                                  id={field.inputAndModelName}
-                                  name={field.inputAndModelName}
-                                  onChange={handleImage}
-                                  className="form-control"
-                                  placeholder={`Ingresa ${field.title.toLowerCase()}`}
-                                />
-                              </div>
-                            )
-                          }
-
-                          {
-                            ((field.inputType == 'password') &&
-
-                              <div className="form-group">
-                                <div className="position-relative">
-                                  <input
-                                    type="password"
-                                    ref={inputPasswordIconRef}
-                                    value={values[field.inputAndModelName]}
-                                    id={field.inputAndModelName}
-                                    name={field.inputAndModelName}
-                                    onChange={handleChange}
-                                    className="form-control my-2"
-                                    placeholder={`Ingresa ${field.title.toLowerCase()}`}
-                                  />
-
-                                  <ReactPasswordToggleIcon
-                                    inputRef={inputPasswordIconRef}
-                                    showIcon={showIcon}
-                                    hideIcon={hideIcon}
-                                  />
-                                </div>
-                              </div>
-                            )
-                          }
-
-                        </div>
-                      ))
-                      :
-                      Object.keys(fields).map((field, index) => ( // En construcción lo dinamico muy dinamico
-                        <div className="col-12 my-1" key={index}>
-
-                          {
-                            field.inputType == 'text' || !field.inputType &&
-                            <input
-                              type="text"
-                              value={values[field]}
-                              // id={field}
-                              name={field}
-                              onChange={handleChange}
-                              className="form-control"
-                              placeholder={
-                                Object.entries(addstr).map(placeholder => {
-                                  if (placeholder[0] == field)
-                                    return ('Ingresa ' + (placeholder[1] != ',' ? placeholder[1].replace(/,/g, '') : '').replace(' - ', '').replace(" y", "y")).replace(/,/g, '')
-                                })
-                              }
-                            />
-                          }
-                        </div>
-                      ))
-                  )
-                  :
-                  // Nunca va a llegar acá
-                  <div className="col-12 my-1">
-                    <input type="text" value={values[Object.keys(fields)[0][0]]} id={Object.keys(fields)[0][0]} name={Object.keys(fields)[0][0]} onChange={handleChange}
-                      className="form-control"
-                      placeholder={`Ingresa ${Object.entries(addstr)[0][1].replace(/,/g, '')}`}
-                    />
-                  </div>
+          <Modal
+            hideBackdrop
+            open={open}
+            onClose={(_, reason) => {
+              if (reason !== "backdropClick") {
+                handleClose();
               }
-            </div>
-            {/* END INPUTS */}
+            }}
+            aria-labelledby="child-modal-title"
+            aria-describedby="child-modal-description"
+          >
+            <Box sx={{ ...modalStyle, width: "auto" }}>
+              {inputsBox}
+            </Box>
+          </Modal>
 
-            {/* SAVE - EDIT - CANCEL BUTTON */}
-            <div className="col-12 justify-content-center text-center mt-2 mb-3">
-              <Tooltip content="Guardar" placement="bottom">
-                <button
-                  type="button"
-                  onClick={submitItem}
-                  className={`btn btn-${id ? 'warning' : 'primary'} btn-sm text-initial`}
-                >
-                  <i className={`fas fa-${id ? 'edit' : 'save'}`}></i> {id ? 'Editar' : 'Guardar'}
-                </button>
-              </Tooltip>
-
-              <Tooltip content="Cancelar" placement="bottom">
-                <button
-                  type="button"
-                  onClick={handleCancelAdd}
-                  className="btn btn-danger btn-sm text-initial ms-2"
-                >
-                  <i className="fas fa-window-close"></i> Cancelar
-                </button>
-              </Tooltip>
-            </div>
-          </div>
+          {!id && inputsBox}
           {/* END SAVE - EDIT - CANCEL BUTTON */}
 
           {/* ADD NEW REGISTER BUTTON */}
-          <div className={`mb-3 ${optional && optional.textAddBtnType && optional.textAddBtnType != 'simple' ? 'text-left justify-content-start' : 'text-right justify-content-end float-right'}`}>
+          <div className={`mb-3 ${(optional && optional.textAddBtnType && optional.textAddBtnType != 'simple') ? 'text-left justify-content-start' : 'text-right justify-content-end float-right'}`}>
             {
               !optional || optional.addBtnType == 'a' || !optional.hasOwnProperty('addBtnType') &&
               ((!forallusersflag && user && user.username === auth.user.username) && (readData.length < limit || !limit)) &&

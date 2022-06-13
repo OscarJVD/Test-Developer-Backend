@@ -1,5 +1,8 @@
 const mongoose = require("mongoose");
 
+/**
+ * @description: This function is used to connect to the database
+*/
 const connectDB = () => {
 
   // CONNECTION EVENTS

@@ -1,8 +1,11 @@
 const User = require("../models/userModel");
 const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 const util = require("util");
 
+/**
+ * @description: This function verify the access token using the secret key with JWT
+*/
 const auth = async (req, res, next) => {
   try {
     const token = req.header("Authorization");

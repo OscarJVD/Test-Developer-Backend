@@ -13,6 +13,6 @@
   },
   "opts": {
     "recurse": true,
-    "destination": "./doc"
+    "destination": "./documentation"
   }
 }
