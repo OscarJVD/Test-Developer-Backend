@@ -817,7 +817,7 @@ const Crud = ({ user, arr, limit, addstr, modelRef, forallusersflag, auth, model
           {/* END SAVE - EDIT - CANCEL BUTTON */}
 
           {/* ADD NEW REGISTER BUTTON */}
-          <div className={`mb-3 ${(optional && optional.textAddBtnType && optional.textAddBtnType != 'simple') ? 'text-left justify-content-start' : 'text-right justify-content-end float-right'}`}>
+          <div role="create button" className={`mb-3 ${(optional && optional.textAddBtnType && optional.textAddBtnType != 'simple') ? 'text-left justify-content-start' : 'text-right justify-content-end float-right'}`}>
             {
               !optional || optional.addBtnType == 'a' || !optional.hasOwnProperty('addBtnType') &&
               ((!forallusersflag && user && user.username === auth.user.username) && (readData.length < limit || !limit)) &&

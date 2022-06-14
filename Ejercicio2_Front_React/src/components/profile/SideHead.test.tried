@@ -1,0 +1,14 @@
+import React from 'react';
+import { screen, render } from '@testing-library/react';
+
+// My component to test
+import SideHead from './SideHead.js';
+
+describe('Profile of the user', () => {
+
+  it("must to display text in a button that is the button to create", () => {
+    const username = 'o'
+    render(<SideHead username={username}/>);
+    expect(screen.queryByText(/Nuevo/i)).toBeInTheDocument();
+  })
+})

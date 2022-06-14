@@ -1,0 +1,84 @@
+import React from 'react';
+import '@testing-library/jest-dom/extend-expect';
+import { screen, fireEvent, render } from '@testing-library/react';
+
+// My component to test
+import Crud from './Crud.js';
+
+describe('CRUD component to Create, Read, Update and Delete documents nad collection using MongoDB', () => {
+
+  it("must to display text in a button that is the button to create", () => {
+
+    render(<Crud/>);
+    expect()
+
+    // const component = render(<Crud model="user" // Nombre de la tabla
+    //   fields={[
+    //     {
+    //       inputAndModelName: 'firstname', // it would be differente to the parent model. It needs de validation
+    //       type: 'text',
+    //       inputType: 'text',
+    //       title: "Tu primer nombre",
+    //       required: true,
+    //       unique: false,
+    //     }
+    //   ]}
+    //   auth={{
+    //     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyYTc3ZmIwMmY0ZjZlZDM3ZDUwODdmZCIsImlhdCI6MTY1NTE1OTQ1NywiZXhwIjoxNjU1MjQ1ODU3fQ.nBTSn0ZpKtCx_YJoXwDe3j7xMpu_g3d2jeohU08_RVk",
+    //     "user": {
+    //       "0": "Oscar",
+    //       "1": "Vargas",
+    //       "2": "o",
+    //       "3": "adventurejavis@gmail.com",
+    //       "4": "https://res.cloudinary.com/ionix/image/upload/v1655146682/ionix_test/yd76dcvdsebhjf2dslld.jpg",
+    //       "5": "3133043714",
+    //       "6": "delfines",
+    //       "_id": "62a77fb02f4f6ed37d5087fd",
+    //       "gender": "male",
+    //       "fullname": "Oscar Vargas",
+    //       "firstname": "Oscar",
+    //       "lastname": "Vargas",
+    //       "username": "o",
+    //       "createdAt": "2022-06-13T18:19:28.586Z",
+    //       "updatedAt": "2022-06-13T18:58:07.002Z",
+    //       "__v": 0,
+    //       "story": "sdfsdf",
+    //       "mobile": "3133043714",
+    //       "avatar": "https://res.cloudinary.com/ionix/image/upload/v1655146684/ionix_test/motx8fen5xy6esacx7xv.jpg",
+    //       "email": "adventurejavis@gmail.com"
+    //     }
+    //   }}
+    //   user={{
+    //     "0": "Oscar",
+    //     "1": "Vargas",
+    //     "2": "o",
+    //     "3": "adventurejavis@gmail.com",
+    //     "4": "https://res.cloudinary.com/ionix/image/upload/v1655146682/ionix_test/yd76dcvdsebhjf2dslld.jpg",
+    //     "5": "3133043714",
+    //     "6": "delfines",
+    //     "_id": "62a77fb02f4f6ed37d5087fd",
+    //     "gender": "male",
+    //     "fullname": "Oscar Vargas",
+    //     "firstname": "Oscar",
+    //     "lastname": "Vargas",
+    //     "username": "o",
+    //     "createdAt": "2022-06-13T18:19:28.586Z",
+    //     "updatedAt": "2022-06-13T18:58:07.002Z",
+    //     "__v": 0,
+    //     "story": "sdfsdf",
+    //     "mobile": "3133043714",
+    //     "avatar": "https://res.cloudinary.com/ionix/image/upload/v1655146684/ionix_test/motx8fen5xy6esacx7xv.jpg",
+    //     "email": "adventurejavis@gmail.com"
+    //   }}
+    //   optional={{
+    //     tableType: 'table',
+    //     generalTitle: 'Usuarios',
+    //     addBtnType: 'button',
+    //     textAddBtnType: 'simple'
+    //   }} />);
+
+      // const createButton = component.getByRole('create button')
+
+      // console.log(createButton);
+  })
+})

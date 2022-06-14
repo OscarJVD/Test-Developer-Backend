@@ -2,3 +2,5 @@ Running on port http://localhost:3245
 Mongoose default connection open to mongodb+srv://ionix:Ionixdompro@cluster0.55lfa.mongodb.net/?retryWrites=true&w=majority
 Mongoose default connection is open
 Connected to mongodb.
+El archivo EXISTE! ../models/userModel
+El archivo EXISTE! ../models/userModel

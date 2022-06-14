@@ -2,12 +2,34 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import LoginAndRegister from "./pages/loginAndRegister";
 import Home from "./pages/home";
 import Alert from "./components/alert/Alert";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector, useDispatch, Provider } from "react-redux";
 import { useEffect } from "react";
 import { refreshToken } from "./redux/actions/authAction";
 import Menu from "./components/base/Menu";
 import PageRender from "./utils/customRouter/PageRender";
 import PrivateRouter from "./utils/customRouter/PrivateRouter";
+
+// const AppWrapper = () => {
+//   const store = createStore(rootReducer);
+
+//   return (
+//     <Provider store={store}>
+//       <App />
+//     </Provider>
+//   )
+// }
+
+// import { createStore, applyMiddleware } from "redux";
+// import { Provider } from "react-redux";
+// import thunk from "redux-thunk";
+// import rootReducer from "./reducers/index";
+
+// import { composeWithDevTools } from "redux-devtools-extension";
+
+// const store = createStore(
+//   rootReducer,
+//   composeWithDevTools(applyMiddleware(thunk))
+// );
 
 function App() {
   const { auth } = useSelector((state) => state);
